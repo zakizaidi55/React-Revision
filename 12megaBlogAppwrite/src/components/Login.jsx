@@ -9,17 +9,17 @@ import Logo from './Logo';
 import Input from './Input';
 
 
-function Login() {
+function LoginComponent() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const {register, handleSubmit} = useForm();
     const [error, setError] = useState("");
 
     const login = async(data) => {
-        console.log("printing data in login ", login)
+        console.log("printing data in login ", data)
         setError("");
         try {
-            const session = await authService.login(data)
+            const session = await authService.login(data);
             if (session) {
                 const userData = await authService.getCurrentUser()
                 if(userData) dispatch(authLogin(userData));
@@ -82,4 +82,4 @@ function Login() {
   )
 }
 
-export default Login
+export default LoginComponent

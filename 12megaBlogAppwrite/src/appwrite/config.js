@@ -82,12 +82,17 @@ export class Service{
     }
 
     async getPosts(queries = [Query.equal("status", "active")]){
+        console.log("printing all posts");
         try {
-            return await this.databases.listDocuments(
+            const allPosts = await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 queries,
             )
+            
+            console.log(allPosts);
+
+            return allPosts;
         } catch (error) {
             console.log("Appwrite serive :: getPosts :: error", error);
             return false
